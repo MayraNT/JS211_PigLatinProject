@@ -18,7 +18,7 @@ const pigLatin = (word) => {
   // identify vowels
   const vowel = ['a', 'e', 'i', 'o', 'u'];
   
-  // loop through word
+  // loop through word to look for vowels
   for (let i = 0; i < word.length; i++) {  
     if (vowel.includes(word[0])) {
      return word + 'yay';
