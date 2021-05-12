@@ -12,10 +12,21 @@ const rl = readline.createInterface({
 
 
 const pigLatin = (word) => {
-
-  // Your code here
-
-}
+  // should lowercase and trim word before translation
+  word = word.toLowerCase().trim();
+  
+  // identify vowels
+  const vowel = ['a', 'e', 'i', 'o', 'u'];
+  
+  // loop through word
+  for (let i = 0; i < word.length; i++) {  
+    if (vowel.includes(word[0])) {
+     return word + 'yay';
+   } else if (vowel.includes(word[i])) {
+     return word.slice(i) + word.slice(0, i) + 'ay';
+   }
+  }
+};
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
