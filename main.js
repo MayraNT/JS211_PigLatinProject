@@ -33,7 +33,8 @@
 
 
 // function connected to DOM ------ 
-// for some reason it's working on words with only 1 vowel. words with multiple vowels are getting sliced from the last occurance of a vowel, rather than the first! 
+// for some reason it's working on words with only 1 vowel. 
+// words with multiple vowels are getting sliced from the last occurance of the vowel, rather than the first! 
 
 const pigLatin = (word) => {
   // get word from user and trim/change to lowercase
@@ -43,7 +44,7 @@ const pigLatin = (word) => {
   // identify vowels
   const vowel = ['a', 'e', 'i', 'o', 'u'];
   
-  // loop through word to look for vowels
+  // loop through word to look for vowels and display new word to user
   for (let i = 0; i < word.length; i++) {  
     if (vowel.includes(word[0])) {
      document.getElementById('translatedWord').innerHTML = word + 'yay';
