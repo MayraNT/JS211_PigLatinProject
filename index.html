@@ -3,13 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Pig Latin Translator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/434da06752.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
     <script src="main.js"></script>
   </head>
   <body>
     <h1>Translate English to Pig Latin!</h1>
-    <p id="translatedWord"></p>
-    <label for="originalWord">Enter a Word:</label><br>
-    <input type="text" id="originalWord" name="originalWord"><br>
-    <button onclick="pigLatin()">Translate</button>
+    <div class="container big">
+      <label for="originalWord">Enter a Word:</label><br>
+      <input type="text" id="originalWord" name="originalWord"><br>
+      <button onclick="pigLatin()">Translate</button>
+    </div>
+    <i class="fas fa-arrow-alt-circle-down fa-3x"></i>
+    <div class="container small">
+      <h2 id="translatedWord"></h2>
+    </div>
   </body>
 </html>

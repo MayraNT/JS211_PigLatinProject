@@ -52,6 +52,8 @@ const pigLatin = (word) => {
     document.getElementById('translatedWord').innerHTML = word.slice(i) + word.slice(0, i) + 'ay';
    }
   }
+  // clears input field after displaying new word
+  document.getElementById('originalWord').value = '';
 };
 
 
