@@ -1,36 +1,67 @@
 'use strict';
 
-// brings in the assert module for unit testing
-const assert = require('assert');
-// brings in the readline module to access the command line
-const readline = require('readline');
-// use the readline module to print out to the command line
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+// // brings in the assert module for unit testing
+// const assert = require('assert');
+// // brings in the readline module to access the command line
+// const readline = require('readline');
+// // use the readline module to print out to the command line
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout
+// });
 
 
+
+// original working function
+
+// const pigLatin = (word) => {
+//   // should lowercase and trim word before translation
+//   word = word.toLowerCase().trim();
+  
+//   // identify vowels
+//   const vowel = ['a', 'e', 'i', 'o', 'u'];
+  
+//   // loop through word to look for vowels
+//   for (let i = 0; i < word.length; i++) {  
+//     if (vowel.includes(word[0])) {
+//       return word + 'yay';
+//     } else if (vowel.includes(word[i])) {
+//       return word.slice(i) + word.slice(0, i) + 'ay';
+//     }
+//   }
+// };
+
+
+// function connected to DOM ------ 
 const pigLatin = (word) => {
-  // should lowercase and trim word before translation
-  word = word.toLowerCase().trim();
+  // get word from user and trim/change to lowercase
+  word = document.getElementById('originalWord').value.toLowerCase().trim();
+  let translatedWord = '';
   
   // identify vowels
   const vowel = ['a', 'e', 'i', 'o', 'u'];
   
-  // loop through word to look for vowels
+  // loop through word to look for vowels and display new word to user
   for (let i = 0; i < word.length; i++) {  
     if (vowel.includes(word[0])) {
-     return word + 'yay';
-   } else if (vowel.includes(word[i])) {
-     return word.slice(i) + word.slice(0, i) + 'ay';
-   }
+      translatedWord = word + 'yay';
+    } else {
+      let vowelIndex = word.search(/[aeiou]/);
+      translatedWord = `${word.slice(vowelIndex)}${word.slice(0, vowelIndex)}ay`;
+    }
   }
+  // displays translated word in the DOM
+  document.getElementById('translatedWord').innerHTML = translatedWord;
+
+  // clears input field after displaying new word
+  document.getElementById('originalWord').value = '';
 };
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
 // to close it ctrl + C
+
 const getPrompt = () => {
   rl.question('word ', (answer) => {
     console.log( pigLatin(answer) );
@@ -41,31 +72,32 @@ const getPrompt = () => {
 // Unit Tests
 // to use them run the command: npm test main.js
 // to close them ctrl + C
-if (typeof describe === 'function') {
 
-  describe('#pigLatin()', () => {
-    it('should translate a simple word', () => {
-      assert.equal(pigLatin('car'), 'arcay');
-      assert.equal(pigLatin('dog'), 'ogday');
-    });
-    it('should translate a complex word', () => {
-      assert.equal(pigLatin('create'), 'eatecray');
-      assert.equal(pigLatin('valley'), 'alleyvay');
-    });
-    it('should attach "yay" if word begins with vowel', () => {
-      assert.equal(pigLatin('egg'), 'eggyay');
-      assert.equal(pigLatin('emission'), 'emissionyay');
-    });
-    it('should lowercase and trim word before translation', () => {
-      assert.equal(pigLatin('HeLlO '), 'ellohay');
-      assert.equal(pigLatin(' RoCkEt'), 'ocketray');
-    });
-  });
-} else {
+// if (typeof describe === 'function') {
 
-  getPrompt();
+//   describe('#pigLatin()', () => {
+//     it('should translate a simple word', () => {
+//       assert.equal(pigLatin('car'), 'arcay');
+//       assert.equal(pigLatin('dog'), 'ogday');
+//     });
+//     it('should translate a complex word', () => {
+//       assert.equal(pigLatin('create'), 'eatecray');
+//       assert.equal(pigLatin('valley'), 'alleyvay');
+//     });
+//     it('should attach "yay" if word begins with vowel', () => {
+//       assert.equal(pigLatin('egg'), 'eggyay');
+//       assert.equal(pigLatin('emission'), 'emissionyay');
+//     });
+//     it('should lowercase and trim word before translation', () => {
+//       assert.equal(pigLatin('HeLlO '), 'ellohay');
+//       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
+//     });
+//   });
+// } else {
 
-}
+//   getPrompt();
+
+// }
 
 
 
