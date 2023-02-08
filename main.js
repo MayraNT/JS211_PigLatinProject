@@ -24,22 +24,19 @@
 //   // loop through word to look for vowels
 //   for (let i = 0; i < word.length; i++) {  
 //     if (vowel.includes(word[0])) {
-//      return word + 'yay';
-//    } else if (vowel.includes(word[i])) {
-//      return word.slice(i) + word.slice(0, i) + 'ay';
-//    }
+//       return word + 'yay';
+//     } else if (vowel.includes(word[i])) {
+//       return word.slice(i) + word.slice(0, i) + 'ay';
+//     }
 //   }
 // };
 
 
 // function connected to DOM ------ 
-// for some reason it's working on words with only 1 vowel. 
-// words with multiple vowels are getting sliced from the last occurance of the vowel, rather than the first! 
-
 const pigLatin = (word) => {
   // get word from user and trim/change to lowercase
-  word = document.getElementById('originalWord').value;
-  word = word.toLowerCase().trim();
+  word = document.getElementById('originalWord').value.toLowerCase().trim();
+  let translatedWord = '';
   
   // identify vowels
   const vowel = ['a', 'e', 'i', 'o', 'u'];
@@ -47,11 +44,15 @@ const pigLatin = (word) => {
   // loop through word to look for vowels and display new word to user
   for (let i = 0; i < word.length; i++) {  
     if (vowel.includes(word[0])) {
-     document.getElementById('translatedWord').innerHTML = word + 'yay';
-   } else if (vowel.includes(word[i])) {
-    document.getElementById('translatedWord').innerHTML = word.slice(i) + word.slice(0, i) + 'ay';
-   }
+      translatedWord = word + 'yay';
+    } else {
+      let vowelIndex = word.search(/[aeiou]/);
+      translatedWord = `${word.slice(vowelIndex)}${word.slice(0, vowelIndex)}ay`;
+    }
   }
+  // displays translated word in the DOM
+  document.getElementById('translatedWord').innerHTML = translatedWord;
+
   // clears input field after displaying new word
   document.getElementById('originalWord').value = '';
 };
